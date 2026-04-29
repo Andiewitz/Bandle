@@ -34,8 +34,9 @@ export default function RegisterPage() {
       await registerUser(data);
       setSuccess(true);
       setTimeout(() => router.push('/login'), 2000);
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Failed to register account');
+    } catch (err) {
+      const errorResponse = err as { response?: { data?: { detail?: string } } };
+      setError(errorResponse.response?.data?.detail || 'Failed to register account');
     }
   };
 

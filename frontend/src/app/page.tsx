@@ -34,7 +34,7 @@ export default function Home() {
         } else {
           setBackendStatus("Offline");
         }
-      } catch (error) {
+      } catch {
         setBackendStatus("Offline");
       }
     };

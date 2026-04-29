@@ -31,8 +31,9 @@ export default function LoginPage() {
       setError('');
       await login(data);
       router.push('/');
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Invalid credentials or backend offline');
+    } catch (err) {
+      const errorResponse = err as { response?: { data?: { detail?: string } } };
+      setError(errorResponse.response?.data?.detail || 'Invalid credentials or backend offline');
     }
   };
 

@@ -22,13 +22,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(false);
 
   // In a real app, you would hit a `/api/auth/me` endpoint here to validate the cookie 
   // on page reload and retrieve the user profile and a fresh CSRF token.
-  useEffect(() => {
-    setLoading(false);
-  }, []);
 
   const login = async (credentials: Record<string, unknown>) => {
     const res = await api.post('/api/auth/login', credentials);
